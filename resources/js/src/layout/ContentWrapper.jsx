@@ -1,4 +1,7 @@
 import React from 'react'
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Loader from '../components/Loader'
 
 const ContentWrapper = ({
@@ -7,16 +10,24 @@ const ContentWrapper = ({
     children,
 }) => {
     return (
-        <div>
+        <Container>
+
             {!isLoading && (
-                <div style={{ height: fillScreen ? '100vh' : '100%' }}>
-                    {children}
-                </div>
+                <Row>
+                    <Col>
+                        {children}
+                    </Col>
+                </Row>
             )}
             {isLoading && (
-                <Loader />
+                <Row className="d-flex justify-content-md-center align-items-center vh-100">
+                    <Col md="auto">
+                        <Loader />
+                    </Col>
+                </Row>
             )}
-        </div>
+
+        </Container>
     )
 }
 

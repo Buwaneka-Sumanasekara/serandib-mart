@@ -13,7 +13,7 @@ export const App = () => {
 
         useEffect(() => {
             //TODO:authentication logic here
-            setLoading(false)
+            // setLoading(false)
         }, [])
 
 

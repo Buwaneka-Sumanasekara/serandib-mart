@@ -1,5 +1,4 @@
 const mix = require('laravel-mix');
-
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -12,6 +11,13 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.jsx', 'public/js').react()
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+    .sass("resources/sass/app.scss", "public/css")
+    .less("resources/less/app.less", "public/css", {
+        lessOptions: {
+            javascriptEnabled: true,
+            modifyVars: {
+                dark: false,
+                compact: true
+            },
+        },
+    });
