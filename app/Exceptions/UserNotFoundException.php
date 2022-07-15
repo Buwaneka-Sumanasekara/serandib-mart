@@ -7,7 +7,7 @@ use Exception;
 class UserNotFoundException extends Exception
 {
     public function __construct() {
-        $this->code="ERROR-101";
+        $this->code="error-202";
         $this->message="User not found";
         parent::__construct();
     }  

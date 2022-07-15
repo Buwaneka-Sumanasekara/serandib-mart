@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pm_user_role_has_pm_permissions', function (Blueprint $table) {
+        Schema::create('um_user_role_has_pm_permissions', function (Blueprint $table) {
             $table->integer('pm_permissions_id');
             $table->integer('um_user_role_id');
             $table->primary(['pm_permissions_id', 'um_user_role_id'],"user_role_permission_id");

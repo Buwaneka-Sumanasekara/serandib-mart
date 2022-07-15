@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use App\Exceptions\AuthenticationException;
 use App\Exceptions\UserNotFoundException;
+use Illuminate\Validation\ValidationException;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -19,10 +20,18 @@ class ErrorResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
-            'code' => $this->getCode(),
-            'message' => $this->getMessage(),
-        ];
+        if($this->resource instanceof ValidationException){
+            return [
+                'code' => 'error-001',
+                'message' => $this->getMessage(),
+            ];
+        }else{
+            return [
+                'code' => $this->getCode(),
+                'message' => $this->getMessage(),
+            ];
+        }
+        
     }
 
     /**
@@ -34,10 +43,13 @@ class ErrorResource extends JsonResource
      */
     public function withResponse($request, $response)
     {
+       // dd($this->resource);
         if($this->resource instanceof AuthenticationException){
             $response->setStatusCode(401);
         }else if($this->resource instanceof UserNotFoundException){
             $response->setStatusCode(401);
+        }else if($this->resource instanceof ValidationException){
+            $response->setStatusCode(502);
         }else{
             $response->setStatusCode(500);
         } 

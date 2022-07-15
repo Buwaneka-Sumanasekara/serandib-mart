@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('username',100);
             $table->string('password',100);
             $table->bigInteger('um_user_id');
+            $table->string('remember_token',200)->default("");
             $table->foreign('um_user_id')->references('id')->on('um_user');
             $table->timestamps();
         });

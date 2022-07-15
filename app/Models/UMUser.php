@@ -11,7 +11,7 @@ class UMUser extends Model
     use  HasFactory, Notifiable;
 
     protected $table = 'um_user';
-    protected $fillable = ['id', 'first_name','mid_name', 'last_name','is_verified', 'um_user_status_id', 'um_user_role_id'];
+    protected $fillable = ['id', 'first_name','mid_name', 'last_name','is_verified','email', 'um_user_status_id', 'um_user_role_id'];
     public $incrementing = false;
 
     public function userRole()
