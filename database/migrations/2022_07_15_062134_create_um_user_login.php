@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('um_user_login', function (Blueprint $table) {
             $table->bigInteger('id')->primary();
-            $table->string('email',100);
+            $table->string('username',100);
             $table->string('password',100);
             $table->bigInteger('um_user_id');
             $table->foreign('um_user_id')->references('id')->on('um_user');
