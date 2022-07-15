@@ -13,7 +13,7 @@ class UMUserRoleHasPermissions extends Model
      *
      * @var string
      */
-    protected $table = 'um_user_role_has_pm_permissions';
+    protected $table = 'pm_user_role_has_pm_permissions';
     protected $fillable = ['um_user_role_id','pm_permissions_id'];
     public $incrementing = false;
 
