@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use App\Http\Resources\ErrorResource;
 
 class Handler extends ExceptionHandler
 {
@@ -46,5 +47,13 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+
+    protected function unauthenticated($request,$exception)
+    {
+        return $request->expectsJson()
+                    ? new ErrorResource(new AuthenticationException())
+                    : redirect()->guest($exception->redirectTo() ?? route('home'));
     }
 }
