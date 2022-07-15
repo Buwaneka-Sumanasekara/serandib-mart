@@ -14,7 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('um_user_login', function (Blueprint $table) {
-            $table->id();
+            $table->bigInteger('id')->primary();
+            $table->string('email',100);
+            $table->string('password',100);
+            $table->bigInteger('um_user_id');
+            $table->foreign('um_user_id')->references('id')->on('um_user');
             $table->timestamps();
         });
     }
