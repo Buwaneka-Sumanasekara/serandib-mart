@@ -5,20 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PMPermissions extends Model
+class SMProductGroup3 extends Model
 {
-   
-       /**
+      /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'pm_permissions';
+    protected $table = 'sm_product_group3';
+    protected $fillable = ['id','name','active'];
     public $incrementing = false;
 
-
-    public function roles()
+    public function products()
     {
-      return $this->belongsTo(UMUserRole::class,'um_user_role_has_pm_permissions',"pm_permissions_id",'um_user_role_id');
+        return $this->hasMany(SMProduct::class,'sm_products','id');
     }
 }
