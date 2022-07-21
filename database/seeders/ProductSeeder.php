@@ -14,6 +14,8 @@ use App\Models\SMProductGroupLink;
 use App\Models\SMProduct;
 use App\Models\SMStock;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\File;
 
 class ProductSeeder extends Seeder
 {
@@ -304,9 +306,28 @@ class ProductSeeder extends Seeder
         ];
 
 
+        Storage::deleteDirectory("upload_files");
+
+ 
+
+        
+
         foreach ($products as $product) {
             $pid=ProductHelper::getNextProductId();
             $product['id']=$pid;
+           
+
+            $image = fake()->imageUrl(640, 480, 'food', true);
+
+            //$filename = $pid.'.jpg';
+           // $tempImage = tempnam(sys_get_temp_dir(), $filename);
+           // copy($image, $tempImage);
+        
+           
+            //Storage::disk('public')->putFile('upload_files', $tempImage);
+
+            $product['image_url']=$image;
+
             $prod=SMProduct::updateOrCreate([
                 'id' => $product['id'],
             ],$product);
@@ -324,16 +345,12 @@ class ProductSeeder extends Seeder
                 $sellPrice= $costPrice+ $costPrice*0.02;
 
                 $stock=[
-                  //  "id"=>$id,
                     "sm_product_id"=>$prod->id,
-                   // "batch"=>$batch,
-                   // "unique_name"=>$uniqueName,
                     "cost_price"=>$costPrice,
                     "sell_price"=>$sellPrice,
                     "active"=>1,
                     "stock_in_hand"=>fake()->numberBetween(0,20),
                     "exp_date"=>($prod->has_expire_date?$end->format('Y-m-d 00:00:00'):$start->format('Y-m-d 00:00:00')),
-                   // "barcode"=>$id,
                 ];
                 array_push($stocks,$stock);
             }
