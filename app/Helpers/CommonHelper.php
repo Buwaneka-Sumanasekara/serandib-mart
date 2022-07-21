@@ -5,19 +5,17 @@ use App\Models\UMUser;
 
 class CommonHelper
 {
-    
-    public static function getNextUserId(): ?int
+    public static function getSuffixNumbers($prevNo,$length)
     {
-        $lastId=UMUser::max("id");
-        $nextNo=1;
-        if($lastId!==null){
-            $nextNo=($lastId+1);
+        try {
+            $NextInt=((int)$prevNo)+1;
+            return str_pad((string)$NextInt,$length,"0",STR_PAD_LEFT);
+        } catch (\Exception $e) {
+            throw $e;
         }
-        return $nextNo;
     }
-      
-   
-
+    
+    
 
    
 }

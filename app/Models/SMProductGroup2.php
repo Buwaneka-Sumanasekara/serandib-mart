@@ -14,6 +14,7 @@ class SMProductGroup2 extends Model
      */
     protected $table = 'sm_product_group2';
     protected $fillable = ['id','name','active'];
+    protected $primaryKey = 'id';
     public $incrementing = false;
 
     public function products()

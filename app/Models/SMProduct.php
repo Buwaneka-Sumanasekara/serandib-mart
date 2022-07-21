@@ -16,7 +16,8 @@ class SMProduct extends Model
      */
     protected $table = 'sm_product';
     public $incrementing = false;
-    protected $fillable = ['id', 'unique_name','name','description','image_url','active','cr_by','updated_by','has_expire_date','has_batch','sm_product_group1_id','sm_product_group2_id','sm_product_group3_id'];
+    protected $primaryKey = 'id';
+    protected $fillable = ['id','name','description','image_url','active','cr_by','updated_by','has_expire_date','has_batch','sm_product_group1_id','sm_product_group2_id','sm_product_group3_id'];
 
     
     public function group1()

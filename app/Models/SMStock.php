@@ -9,7 +9,7 @@ class SMStock extends Model
 {
     protected $table = 'sm_stock';
     public $incrementing = false;
-    protected $fillable = ['id', 'sm_product_id','batch','cost_price','sell_price','active','stock_in_hand','exp_date','barcode','sm_product_id'];
+    protected $fillable = ['id', 'sm_product_id','batch', 'unique_name','cost_price','sell_price','active','stock_in_hand','exp_date','barcode',];
 
     public function product()
     {

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('id',200)->primary();
             $table->string('sm_product_id',100);
             $table->integer('batch');
+            $table->string('unique_name',500);
             $table->double('cost_price', 8, 2);
             $table->double('sell_price', 8, 2);
             $table->tinyInteger('active')->default('1');

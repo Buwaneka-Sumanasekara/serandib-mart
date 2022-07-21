@@ -16,7 +16,7 @@ use App\Models\UMUserLogin;
 use Illuminate\Support\Facades\DB;
 
 
-use App\Helpers\CommonHelper;
+use App\Helpers\UserHelper;
 
 class AuthController extends Controller
 {
@@ -68,7 +68,7 @@ class AuthController extends Controller
                 'password' => 'required|string',
             ]);
             DB::beginTransaction();
-            $nextUserId=CommonHelper::getNextUserId();
+            $nextUserId=UserHelper::getNextUserId();
     
             $user = UMUser::create([
                 'id'=>$nextUserId,
