@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TestController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -15,8 +17,10 @@ use App\Http\Controllers\AuthController;
 */
 
 
-Route::group([ 'middleware' => 'api',
-'prefix' => 'auth'],function () {
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth'
+], function () {
     Route::controller(AuthController::class)->group(function () {
         Route::post('login', 'login');
         Route::post('register', 'register');
@@ -26,3 +30,12 @@ Route::group([ 'middleware' => 'api',
     });
 });
 
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'test'
+], function () {
+    Route::controller(TestController::class)->group(function () {
+        Route::post('product/upload', 'testUploadProductImage');
+    });
+});
