@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TestController;
 
 /*
@@ -37,5 +38,21 @@ Route::group([
 ], function () {
     Route::controller(TestController::class)->group(function () {
         Route::post('product/upload', 'testUploadProductImage');
+    });
+});
+
+
+/*Public endpoints*/
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'pub'
+], function () {
+
+    Route::group([
+        'prefix' => 'products'
+    ], function () {
+        Route::controller(ProductController::class)->group(function () {
+            Route::get('all', 'public_getAllActiveProducts');
+        });
     });
 });
